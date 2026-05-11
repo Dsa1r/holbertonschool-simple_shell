@@ -1,0 +1,30 @@
+.TH HSH 1 "May 2026" "1.0" "Simple Shell Manual"
+
+.SH NAME
+hsh \- simple UNIX command interpreter
+
+.SH SYNOPSIS
+.B hsh
+
+.SH DESCRIPTION
+Simple Shell is a command line interpreter written in C.
+
+The shell reads commands from standard input and executes them.
+
+.SH FEATURES
+- Interactive mode
+- Non-interactive mode
+- Execute commands with full path
+
+.SH USAGE
+Run the shell:
+
+.B ./hsh
+
+Example:
+
+.B /bin/ls
+
+.SH AUTHORS
+
+Alhubaishi Asim , Alqwaifel Dana.
