@@ -1,35 +1,41 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
 
-/**
- * main - Entry point of the simple shell
- *
- * Return: Always 0 (Success)
- */
 int main(void)
 {
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
+    char *line = NULL;
+    size_t len = 0;
+    pid_t pid;
+    int status;
 
-	while (1)
-	{
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "$ ", 2);
+    while (1)
+    {
+        write(STDOUT_FILENO, "#cisfun$ ", 10);
 
-		read = getline(&line, &len, stdin);
+        if (getline(&line, &len, stdin) == -1)
+        {
+            write(STDOUT_FILENO, "\n", 1);
+            break;
+        }
 
-		if (read == -1)
-		{
-			free(line);
-			exit(EXIT_SUCCESS);
-		}
+        line[strcspn(line, "\n")] = '\0';
 
-		if (read > 1)
-			write(STDOUT_FILENO, line, read);
-	}
+        pid = fork();
 
-	free(line);
-	return (0);
+        if (pid == 0)
+        {
+            char *argv[] = {line, NULL};
+
+            execve(line, argv, environ);
+
+            perror("./shell");
+            exit(EXIT_FAILURE);
+        }
+        else
+        {
+            wait(&status);
+        }
+    }
+
+    free(line);
+    return (0);
 }
