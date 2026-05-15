@@ -3,10 +3,17 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
 #include <sys/wait.h>
 
 extern char **environ;
 
-#endif
+/* Function prototypes */
+char *find_path(char *cmd);
+int execute_cmd(char **args, char *prog_name, int line_count);
+char **tokenize(char *line);
+void free_args(char **args);
+
+#endif /* MAIN_H */
