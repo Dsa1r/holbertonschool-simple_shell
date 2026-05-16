@@ -22,7 +22,7 @@ int main(int ac, char **argv)
 	{
 		if (interactive)
 			write(STDOUT_FILENO, "$ ", 2);
-		nread = getline(&line, &len, stdin);
+		nread = _getline(&line, &len);
 		if (nread == -1)
 		{
 			if (interactive)

@@ -16,5 +16,5 @@ char *find_path(char *cmd);
 int execute_cmd(char **args, char *prog_name, int line_count);
 char **tokenize(char *line);
 void free_args(char **args);
-
+ssize_t _getline(char **lineptr, size_t *n);
 #endif /* MAIN_H */
