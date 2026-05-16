@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include "main.h"
+
 void free_args(char **args)
 {
 	int i = 0;
