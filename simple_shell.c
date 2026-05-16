@@ -1,38 +1,5 @@
 #include "main.h"
 
-/**
- * tokenize - Split a line into tokens (words)
- * @line: the input string
- * Return: array of strings (tokens)
- */
-char **tokenize(char *line)
-{
-	char **args;
-	char *token;
-	int i = 0;
-
-	args = malloc(sizeof(char *) * 64);
-	if (!args)
-		return (NULL);
-	token = strtok(line, " \t\r\n");
-	while (token != NULL && i < 63)
-	{
-		args[i++] = token;
-		token = strtok(NULL, " \t\r\n");
-	}
-	args[i] = NULL;
-	return (args);
-}
-
-/**
- * free_args - Free the args array
- * @args: array of strings
- */
-void free_args(char **args)
-{
-	if (args)
-		free(args);
-}
 
 /**
  * find_path - Search for cmd in PATH
