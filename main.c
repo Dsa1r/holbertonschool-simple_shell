@@ -41,13 +41,13 @@ int main(int ac, char **argv)
 			free_args(args);
 			continue;
 		}
-		if (strcmp(args[0], "exit") == 0)
+		if (_strcmp(args[0], "exit") == 0)
 		{
 			free_args(args);
 			free(line);
 			exit(status);
 		}
-		if (strcmp(args[0], "env") == 0)
+		if (_strcmp(args[0], "env") == 0)
 		{
 			int i;
 
