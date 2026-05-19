@@ -20,5 +20,5 @@ ssize_t _getline(char **lineptr, size_t *n);
 int _strcmp(const char *s1, const char *s2);
 char **tokenize(char *line);
 void free_args(char **args);
-
+int _atoi(char *str);
 #endif /* MAIN_H */

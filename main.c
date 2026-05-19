@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdlib.h>  /* for atoi */
+
 
 /**
  * main - Entry point for simple shell
@@ -47,7 +47,7 @@ int main(int ac, char **argv)
 			int exit_status = status;
 			if (args[1])
 			{
-				exit_status = atoi(args[1]);
+				exit_status = _atoi(args[1]);
 			}
 
 			free_args(args);
