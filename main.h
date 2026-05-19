@@ -21,4 +21,7 @@ int _strcmp(const char *s1, const char *s2);
 char **tokenize(char *line);
 void free_args(char **args);
 int _atoi(char *str);
+int is_number(char *str);
+
+
 #endif /* MAIN_H */
