@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <signal.h>
 
 /**
  * main - Entry point for simple shell
@@ -18,6 +18,8 @@ int main(int ac, char **argv)
 	int interactive = isatty(STDIN_FILENO);
 
 	(void)ac;
+
+	signal(SIGINT, handle_sigint);
 
 	while (1)
 	{

@@ -22,6 +22,6 @@ char **tokenize(char *line);
 void free_args(char **args);
 int _atoi(char *str);
 int is_number(char *str);
-
+void handle_sigint(int sig);
 
 #endif /* MAIN_H */
