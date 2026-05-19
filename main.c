@@ -52,6 +52,7 @@ int main(int ac, char **argv)
 					fprintf(stderr, "%s: %d: exit: Illegal number: %s\n",
 					argv[0], line_count, args[1]);
 					free_args(args);
+					free(line);
 					return (2);
 				}
 
