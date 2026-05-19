@@ -47,6 +47,14 @@ int main(int ac, char **argv)
 			int exit_status = status;
 			if (args[1])
 			{
+				if (!is_number(args[1]))
+				{
+					fprintf(stderr, "%s: %d: exit: Illegal number: %s\n",
+					argv[0], line_count, args[1]);
+					free_args(args);
+					return (2);
+				}
+
 				exit_status = _atoi(args[1]);
 			}
 
