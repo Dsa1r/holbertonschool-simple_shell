@@ -34,7 +34,7 @@ int _setenv(char **args)
 		if (strncmp(environ[i], args[1], strlen(args[1])) == 0 &&
 		    environ[i][strlen(args[1])] == '=')
 		{
-			free(environ[i]);
+			/* DO NOT FREE environ[i] */
 			environ[i] = new_var;
 			return (0);
 		}
@@ -64,8 +64,7 @@ int _unsetenv(char **args)
 		if (strncmp(environ[i], args[1], strlen(args[1])) == 0 &&
 		    environ[i][strlen(args[1])] == '=')
 		{
-			free(environ[i]);
-
+			/* DO NOT FREE */
 			for (j = i; environ[j]; j++)
 				environ[j] = environ[j + 1];
 
