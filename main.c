@@ -77,9 +77,24 @@ int main(int ac, char **argv)
 			free_args(args);
 			continue;
 		}
+
+		if (_strcmp(args[0], "setenv") == 0)
+		{
+			_setenv(args);
+			free_args(args);
+			continue;
+		}
+
+		if (_strcmp(args[0], "unsetenv") == 0)
+		{
+			_unsetenv(args);
+			free_args(args);
+			continue;
+		}
 		status = execute_cmd(args, argv[0], line_count);
 		free_args(args);
 	}
+
 	free(line);
 	return (status);
 }
