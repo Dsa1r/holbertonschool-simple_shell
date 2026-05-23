@@ -24,6 +24,6 @@ int _atoi(char *str);
 int is_number(char *str);
 int _setenv(char **args);
 int _unsetenv(char **args);
-
+void handle_sigint(int sig);
 
 #endif /* MAIN_H */
