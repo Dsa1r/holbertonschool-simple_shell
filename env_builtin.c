@@ -3,15 +3,18 @@
 #include <unistd.h>
 #include <string.h>
 
+extern char **environ;
+
 /**
- * _setenv - initialize or modify an environment variable
+ * _setenv - create or modify an environment variable
  * @args: arguments array
  * Return: 0 on success, 1 on failure
  */
 int _setenv(char **args)
 {
-	int i;
+	int i, j;
 	char *new_var;
+	char **new_env;
 	size_t len;
 
 	if (!args[1] || !args[2])
@@ -34,13 +37,30 @@ int _setenv(char **args)
 		if (strncmp(environ[i], args[1], strlen(args[1])) == 0 &&
 		    environ[i][strlen(args[1])] == '=')
 		{
-			/* DO NOT FREE environ[i] */
 			environ[i] = new_var;
 			return (0);
 		}
 	}
 
-	free(new_var);
+	i = 0;
+	while (environ[i])
+		i++;
+
+	new_env = malloc(sizeof(char *) * (i + 2));
+	if (!new_env)
+	{
+		free(new_var);
+		return (1);
+	}
+
+	for (j = 0; j < i; j++)
+		new_env[j] = environ[j];
+
+	new_env[i] = new_var;
+	new_env[i + 1] = NULL;
+
+	environ = new_env;
+
 	return (0);
 }
 
@@ -51,7 +71,8 @@ int _setenv(char **args)
  */
 int _unsetenv(char **args)
 {
-	int i, j;
+	int i, j, len;
+	char **new_env;
 
 	if (!args[1])
 	{
@@ -59,18 +80,33 @@ int _unsetenv(char **args)
 		return (1);
 	}
 
+	len = strlen(args[1]);
+
 	for (i = 0; environ[i]; i++)
 	{
-		if (strncmp(environ[i], args[1], strlen(args[1])) == 0 &&
-		    environ[i][strlen(args[1])] == '=')
+		if (strncmp(environ[i], args[1], len) == 0 &&
+		    environ[i][len] == '=')
 		{
-			/* DO NOT FREE */
 			for (j = i; environ[j]; j++)
 				environ[j] = environ[j + 1];
-
-			return (0);
+			break;
 		}
 	}
+
+	i = 0;
+	while (environ[i])
+		i++;
+
+	new_env = malloc(sizeof(char *) * (i + 1));
+	if (!new_env)
+		return (1);
+
+	for (j = 0; j < i; j++)
+		new_env[j] = environ[j];
+
+	new_env[i] = NULL;
+
+	environ = new_env;
 
 	return (0);
 }
